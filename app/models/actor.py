@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, create_engine
 
 from app import db
-from app.models.base_model import BaseModel
 
 
 class Actor(db.Model):
@@ -18,6 +17,7 @@ class Actor(db.Model):
         self.name = name
         self.age = age
         self.gender = gender
+        self.db = db
 
     def format(self):
         return {
