@@ -20,6 +20,9 @@ class Movie(db.Model):
 
     @property
     def cast(self):
+        """returns a list of all
+        actors in the movie
+        """
         actor_list = []
         for actor in self.actors:
             actor_dict = {
@@ -30,9 +33,16 @@ class Movie(db.Model):
         return actor_list
 
     def format(self):
+        """formats a movie obj
+        into a dict which is json serializable
+        """
         return {
             'id': self.id,
             'title': self.title,
             'release_date': self.release_date,
             'cast': self.cast
         }
+
+    def update(self):
+        """updates a movie"""
+        return self.model_update(db)
