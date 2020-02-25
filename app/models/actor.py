@@ -21,6 +21,12 @@ class Actor(db.Model):
         self.gender = gender
         self.db = db
 
+    def update(self):
+        return self.model_update(db)
+
+    def delete(self):
+        return self.model_delete(db)
+
     @property
     def movies_in(self):
         movies_in = []

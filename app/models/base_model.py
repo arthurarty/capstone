@@ -11,16 +11,16 @@ class BaseModel(Model):
         self.db.session.add(self)
         self.db.session.commit()
 
-    def update(self):
+    def model_update(self, db):
         """update item in database"""
-        self.db.session.commit()
+        db.session.commit()
 
-    def delete(self):
+    def model_delete(self, db):
         """delete item from database"""
-        self.db.session.delete(self)
-        self.db.session.commit()
+        db.session.delete(self)
+        db.session.commit()
 
     @classmethod
     def find(cls, id=None):
         """Find item by id"""
-        return cls.query.filter_by(id=id).first()
+        return cls.query.filter_by(id=id).one_or_none()
