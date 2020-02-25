@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, abort, jsonify, request
 from sqlalchemy.exc import DatabaseError, DataError
 
 from app.models.movie import Movie
+from utils.query_all import query_all
 
 bp = Blueprint('movies', __name__, url_prefix='/movies')
 
@@ -9,8 +10,7 @@ bp = Blueprint('movies', __name__, url_prefix='/movies')
 @bp.route('', methods=['GET'])
 def get_movies():
     """Get all movies"""
-    movies = Movie.query.all()
-    movie_list = [movie.format() for movie in movies]
+    movie_list = query_all(Movie)
     return jsonify({
         "success": True,
         "movies": movie_list
@@ -34,8 +34,7 @@ def create_movie():
             title=validated_body['title'],
             release_date=validated_body['release_date'])
         new_movie.insert()
-        movies = Movie.query.all()
-        movie_list = [movie.format() for movie in movies]
+        movie_list = query_all(Movie)
         return jsonify({
             'success': True,
             'created': new_movie.id,
