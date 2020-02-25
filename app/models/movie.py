@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 
 from app import db
+from app.models.cast import Cast
 
 
 class Movie(db.Model):
@@ -10,15 +11,28 @@ class Movie(db.Model):
 
     title = Column(String, nullable=False)
     release_date = Column(DateTime, nullable=False)
+    actors = db.relationship('Cast', backref='movie', lazy=True)
 
     def __init__(self, title, release_date):
         self.title = title
         self.release_date = release_date
         self.db = db
 
+    @property
+    def cast(self):
+        actor_list = []
+        for actor in self.actors:
+            actor_dict = {
+                "id": actor.actor_id,
+                "name": actor.actor.name,
+            }
+            actor_list.append(actor_dict)
+        return actor_list
+
     def format(self):
         return {
             'id': self.id,
             'title': self.title,
             'release_date': self.release_date,
+            'cast': self.cast
         }
