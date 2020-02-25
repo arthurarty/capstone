@@ -43,3 +43,34 @@ def create_movie():
         }), 201
     except DatabaseError:
         abort(422)
+
+
+@bp.route('<int:movie_id>', methods=['PATCH'])
+def edit_movie(movie_id):
+    """Edit an existing movie"""
+    movie = Movie.find(movie_id)
+
+    if movie is None:
+        abort(404)
+
+    body = request.get_json()
+    validated_body = {}
+    fields = ['title', 'release_date']
+    for field in fields:
+        resp = body.get(field, None)
+        validated_body[field] = resp
+
+    if validated_body['title'] is not None:
+        movie.title = validated_body['title']
+    if validated_body['release_date'] is not None:
+        movie.release_date = validated_body['release_date']
+
+    try:
+        movie.update()
+        movie_list = query_all(Movie)
+        return jsonify({
+            'success': True,
+            'movies': movie_list,
+        }), 200
+    except DatabaseError:
+        abort(422)
