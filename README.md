@@ -370,6 +370,37 @@ Example of output.
 6. 422 -  Request unprocessable.
 7. 500 - Internal server error.
 
+## Running tests
+
+- Tokens for each role are needed to run tests.
+- Click [here](https://arty-casting-agency.auth0.com/authorize?audience=casting_agency&response_type=token&client_id=WfeW4jT6hkaViJq1vc9cFtYULfeWqzaI&redirect_uri=http://localhost:8080/login-results) to view login page.
+
+Casting assistant credentials.
+
+```txt
+email: assistant@example.com
+password: asG8Bwqg!#
+```
+
+Casting director credentials.
+
+```txt
+email: director@example.com
+password: gaKGS234Gal!@
+```
+
+Executive producer
+
+```txt
+email: producer@example.com
+password: stGS12gzLoi74@$E
+```
+
+- Add the tokens from each of the above to the .env file following the .env_example.
+- Create a test database and its database url to the .env file.
+- Now you can run the command `pytest` to run the tests.
+
+
 ### Authors
 
 - Nangai Arthur
