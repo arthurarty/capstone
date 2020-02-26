@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, jsonify, request
 from sqlalchemy.exc import DatabaseError, DataError
 
+from app.auth.auth import AuthError, requires_auth
 from app.models.movie import Movie
 from utils.query_all import query_all
 
@@ -8,6 +9,7 @@ bp = Blueprint('movies', __name__, url_prefix='/movies')
 
 
 @bp.route('', methods=['GET'])
+@requires_auth('get:movies')
 def get_movies():
     """Get all movies"""
     movie_list = query_all(Movie)
@@ -18,6 +20,7 @@ def get_movies():
 
 
 @bp.route('', methods=['POST'])
+@requires_auth('create:movies')
 def create_movie():
     """Adds a new movie"""
     body = request.get_json()
@@ -46,6 +49,7 @@ def create_movie():
 
 
 @bp.route('<int:movie_id>', methods=['PATCH'])
+@requires_auth('patch:movies')
 def edit_movie(movie_id):
     """Edit an existing movie"""
     movie = Movie.find(movie_id)
