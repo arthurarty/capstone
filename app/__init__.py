@@ -81,4 +81,8 @@ def create_app(config_name):
             "message": "internal server error."
         })
 
+    @app.route('/')
+    def index():
+        return "Casting Agency"
+
     return app
