@@ -1,0 +1,1244 @@
+{
+	"info": {
+		"_postman_id": "f6a059a8-aa66-4fde-b0da-220d6ee7c2ad",
+		"name": "Casting Agency",
+		"description": "The Casting Agency models a company that is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "Get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d02f7e0d-225d-41c5-afc0-ba2cfcdb8ec8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains actors\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						},
+						"description": "View all actors in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1dae0204-2cf2-41d9-8153-324f27942f63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains movies\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "View all movies in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Create new actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3b27346-6d56-4b2d-99e9-fcf1085552d9",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Nangai Arthur\",\n\t\"age\": 25,\n\t\"gender\": \"Male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e27dc52-ff95-4ddd-97d2-0d1b25c3b1be",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Secret life of pets\",\n\t\"release_date\": \"2020-1-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70fca713-2be1-4e2c-b28e-9a4d6314fdae",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"release_date\": \"2001-1-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7efaf6d4-f4d7-4111-8349-202ec26c472b",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Can view actors and movies",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVkZORFpDUmpKQlFUbENOVFJDTmpsQlFUQXdPVEF5T1RFd1JERkRPVEl4TkVZelFVRkJRZyJ9.eyJpc3MiOiJodHRwczovL2FydHktY2FzdGluZy1hZ2VuY3kuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNTYzODhhMjA3MjM3MGQ1YmYzOTA0YSIsImF1ZCI6ImNhc3RpbmdfYWdlbmN5IiwiaWF0IjoxNTgyNzA5NjA3LCJleHAiOjE1ODI3OTYwMDcsImF6cCI6IldmZVc0alQ2aGthVmlKcTF2YzljRnRZVUxmZVdxemFJIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyJdfQ.ivZbI4kFDhwgAqKQCr_8MoaXui3gVvMvTDj-5ACpWme-eO6eE4IN8rfkSJOQNCpOe99xdaIqX-MkUcvzBU9ksqfqwYR9kcSmNznElIfWu81fpV_UcP15MdeLFx5JBVzCsaksxtBDttzj1nYXjnVOargyF_lpqvU2ZMThZcLl2PLM8CYMnMV9X-iSLiqQgEVbt6NocXGQMfUgLpO51WZsjdkJjg9ztVmDGxNDoMe_a_9ldArwwi8KmSNZ7NXOQu84Q7nundJM2gsOL0nNSKbKdPDhWJDT1gTNMQiljVISWmb0xdefGaQri00_RTAkNpDrGmx4mS9BQGJ8q2QAa4aUfw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d626003-39b3-4ae7-8071-d09f80e82b68",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "32a5d042-a486-4a47-b564-ab9bc705bed6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "Get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d02f7e0d-225d-41c5-afc0-ba2cfcdb8ec8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains actors\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1dae0204-2cf2-41d9-8153-324f27942f63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains movies\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3b27346-6d56-4b2d-99e9-fcf1085552d9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Nangai Arthur\",\n\t\"age\": 25,\n\t\"gender\": \"Male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e27dc52-ff95-4ddd-97d2-0d1b25c3b1be",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Secret life of pets\",\n\t\"release_date\": \"2020-1-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70fca713-2be1-4e2c-b28e-9a4d6314fdae",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"release_date\": \"2001-1-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/4000",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"4000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70fca713-2be1-4e2c-b28e-9a4d6314fdae",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"release_date\": \"2010-1-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "Edit a movie that exists in the db."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3aae589-c26d-400b-93de-d59579a0c79d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"9"
+							]
+						},
+						"description": "deletes an actor"
+					},
+					"response": []
+				}
+			],
+			"description": "Can view actors and movies",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVkZORFpDUmpKQlFUbENOVFJDTmpsQlFUQXdPVEF5T1RFd1JERkRPVEl4TkVZelFVRkJRZyJ9.eyJpc3MiOiJodHRwczovL2FydHktY2FzdGluZy1hZ2VuY3kuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNTYzOTdkMjA3MjM3MGQ1YmYzOTA5MyIsImF1ZCI6ImNhc3RpbmdfYWdlbmN5IiwiaWF0IjoxNTgyNzM5NDg4LCJleHAiOjE1ODI4MjU4ODgsImF6cCI6IldmZVc0alQ2aGthVmlKcTF2YzljRnRZVUxmZVdxemFJIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJjcmVhdGU6YWN0b3JzIiwiZGVsZXRlOmFjdG9ycyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIl19.Jh3crlPLj7qIraHoDspFG_anj90R3xDI5LN9epSh_gZigi-TqXw71ajglyHdbDw9DS_NFTKjWhrHgHm60bmEsuteXty_lD2DxUZRHxNnDJ6S6H1-wnSzYc7fnaD9ePSnvneA7QvLb8TmGthnOxhtx1Uyramv2lWDgb5nb7DhwaaczmSQDDnOpAYqHZUblREf_0YjCF3iwYscttct_01o1bA_IZDxSjsKZbL_T1669z5dWP5og2Xc-T4zv_onWtBOEoe4OxgIicn-qVJVZ0uLTf2RUashb-k1VkK-vXNOd8sbF3x58J9yUqb_q78PYbH57u5IysFY6Rj0fmWSBcdwBw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d626003-39b3-4ae7-8071-d09f80e82b68",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "32a5d042-a486-4a47-b564-ab9bc705bed6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Executive Producer",
+			"item": [
+				{
+					"name": "Get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d02f7e0d-225d-41c5-afc0-ba2cfcdb8ec8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains actors\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1dae0204-2cf2-41d9-8153-324f27942f63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains movies\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3b27346-6d56-4b2d-99e9-fcf1085552d9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Martin Mang\",\n\t\"age\": 25,\n\t\"gender\": \"Male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e27dc52-ff95-4ddd-97d2-0d1b25c3b1be",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Secret life of pets\",\n\t\"release_date\": \"2020-1-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70fca713-2be1-4e2c-b28e-9a4d6314fdae",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"release_date\": \"2001-1-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/4000",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"4000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70fca713-2be1-4e2c-b28e-9a4d6314fdae",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"release_date\": \"2010-1-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "Edit a movie that exists in the db."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34e574b8-91fe-40ff-ab48-3a661174d275",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"8"
+							]
+						},
+						"description": "deletes an actor"
+					},
+					"response": []
+				}
+			],
+			"description": "Can view actors and movies",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVkZORFpDUmpKQlFUbENOVFJDTmpsQlFUQXdPVEF5T1RFd1JERkRPVEl4TkVZelFVRkJRZyJ9.eyJpc3MiOiJodHRwczovL2FydHktY2FzdGluZy1hZ2VuY3kuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVlNTYzOWU5ZjI2Y2NhMGQ1ODA5MzNhNyIsImF1ZCI6ImNhc3RpbmdfYWdlbmN5IiwiaWF0IjoxNTgyNzA5Mzk5LCJleHAiOjE1ODI3OTU3OTksImF6cCI6IldmZVc0alQ2aGthVmlKcTF2YzljRnRZVUxmZVdxemFJIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJjcmVhdGU6YWN0b3JzIiwiY3JlYXRlOm1vdmllcyIsImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiXX0.UGKSFQo8RFKE62ZZ6Cpbk_Wp7wcvuMvDLqDLtTyKXrM3uYlJs1U7bA_0dcaY4wP7Z8ihtQQLMrZ-6wvfc-Ask7YHTEy55MR-ULSsvx740Dm3hFr_4qLnFCp09iCLrD9TyK6jwNfpqJbgiPxp9zbO-Q3IEiko0IEAibprx8iQkY7AoQEvNaNPoHkjEDow-zxBktpZSfWfXI_p-JmgL6iNeUKwOivxRWm91qKj7A0roz4tuirzHmRAV3LL8jxV1gyQv-7eX_JlS11ADAQko46eE5Fs7P0G_odeX3ixRKkpYkaBTjrusN4FuDuX5fXBmYJhUYeKEgBnaEOWYxoVRv2Taw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d626003-39b3-4ae7-8071-d09f80e82b68",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "32a5d042-a486-4a47-b564-ab9bc705bed6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e7d3f56-7626-4fef-b44d-1bce0c1dd974",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						},
+						"description": "Gets all actors."
+					},
+					"response": []
+				},
+				{
+					"name": "Create new actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3b27346-6d56-4b2d-99e9-fcf1085552d9",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Nangai Arthur\",\n\t\"age\": 25,\n\t\"gender\": \"Male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						},
+						"description": "creates a new actor."
+					},
+					"response": []
+				},
+				{
+					"name": "Create new movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e27dc52-ff95-4ddd-97d2-0d1b25c3b1be",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Secret life of pets\",\n\t\"release_date\": \"2020-1-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "A post method to add new movie."
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6209a6bb-b4f5-4140-8807-b39f391d4358",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Returns all movies."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf72c88f-6436-4091-86d8-3d882768d0e2",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/actors/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"actors",
+								"5"
+							]
+						},
+						"description": "Deletes an actor or returns 404."
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70fca713-2be1-4e2c-b28e-9a4d6314fdae",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"release_date\": \"2001-1-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The public",
+			"auth": {
+				"type": "noauth"
+			},
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
