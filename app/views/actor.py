@@ -3,12 +3,14 @@ from sqlalchemy.exc import DatabaseError, DataError
 
 from app.models.actor import Actor
 from utils.query_all import query_all
+from app.auth.auth import AuthError, requires_auth
 
 
 bp = Blueprint('actors', __name__, url_prefix='/actors')
 
 
 @bp.route('', methods=['GET'])
+@requires_auth('get:actors')
 def get_actors():
     """Get all actors"""
     actor_list = query_all(Actor)

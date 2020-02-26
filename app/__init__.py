@@ -4,21 +4,20 @@ from dotenv import load_dotenv
 from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from app.models.base_model import BaseModel
 
+from app.models.base_model import BaseModel
+from app.config import app_config
 
 load_dotenv()
 
-database_path = os.getenv('DB_URL')
 
 db = SQLAlchemy(model_class=BaseModel)
 
 
-def create_app(test_config=None):
+def create_app(config_name):
     app = Flask(__name__)
     CORS(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config.from_object(app_config[config_name])
     db.app = app
     db.init_app(app)
 
