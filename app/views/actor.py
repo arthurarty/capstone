@@ -21,6 +21,7 @@ def get_actors():
 
 
 @bp.route('', methods=['POST'])
+@requires_auth('create:actors')
 def create_actor():
     """Adds a new actor given
     age, name and gender
@@ -52,6 +53,7 @@ def create_actor():
 
 
 @bp.route('<int:actor_id>', methods=['DELETE'])
+@requires_auth('delete:actors')
 def delete_actor(actor_id):
     """Delete an actor or return 404
     if actor with given id does not exist

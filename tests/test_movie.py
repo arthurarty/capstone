@@ -93,7 +93,7 @@ class MovieTestCase(BaseTest):
         """Ensure API returns 404 for movie
         that does not exist"""
         res = self.client().patch(
-            f'/movies/1000', json=bad_request, headers={
+            '/movies/1000', json=bad_request, headers={
                 'Authorization': 'Bearer ' + self.producer_token})
         data = json.loads(res.data)
         self.assertAlmostEqual(res.status_code, 404)
