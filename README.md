@@ -45,11 +45,19 @@ This will install all of the required packages we selected within the `requireme
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server.
 - [DOT-ENV](https://pypi.org/project/python-dotenv/) extension handling reading .env variables.
 
+## Production
+
+- View application hosted on heroku. `https://arty-agency.herokuapp.com`.
+- To test endpoints you could use [Postman](https://www.postman.com/) with the collection [agency.postman_collection.json](agency.postman_collection.json)
+- To test api using live documentation click [here](https://documenter.getpostman.com/view/2022116/SzKYNbdD)
+
 ## Database Setup
+
 - Create a database and complete the database URL in .env.
 - Apply db migrations using the command. `python manage.py db upgrade`.
 
 ## Environment variables
+
 Create a .env file in following the example (.env_example). Ensure to put database url for the app to use and for testing.
 
 ## Running the server
@@ -64,12 +72,36 @@ python manage.py runserver
 
 ## API Documentation
 
-- To test endpoints you can use [Postman](https://www.postman.com/)
+- To test endpoints you can use [Postman](https://www.postman.com/).
+- Alteratively you can use the live documentation. `https://documenter.getpostman.com/view/2022116/SzKYNbdD`.
+- Click [here](https://arty-casting-agency.auth0.com/authorize?audience=casting_agency&response_type=token&client_id=WfeW4jT6hkaViJq1vc9cFtYULfeWqzaI&redirect_uri=http://localhost:8080/login-results) to view login page.
+
+Casting assistant credentials.
+
+```txt
+email: assistant@example.com
+password: asG8Bwqg!#
+```
+
+Casting director credentials.
+
+```txt
+email: director@example.com
+password: gaKGS234Gal!@
+```
+
+Executive producer
+
+```txt
+email: producer@example.com
+password: stGS12gzLoi74@$E
+```
 
 ### Get '/actors'
 
 - Fetchs a list of actors from the database.
 - Request Arguments: None
+- Required permission: `get:actors`.
 
 Example of expected output.
 
@@ -109,6 +141,7 @@ Example of expected output.
 
 - Creates a new actor and returns the id of the new actor.
 - Required fields: name, age, gender.
+- Required permission: `create:actors`.
 
 Example of json data to post.
 
@@ -167,6 +200,7 @@ Example of output.
 - Deletes an actor from the database whose id has been specified.
 - Example request. http://127.0.0.1:5000/actors/5
 - HTTP method: Delete
+- Required permission: `delete:actors`.
 
 Example of output.
 
@@ -207,6 +241,7 @@ Example of output.
 ### Get '/movies'
 
 - Fetches a list of movies. Each formated as a dictionary.
+- Required permission: `get:movies`.
 
 Example of output.
 
@@ -249,6 +284,7 @@ Example of output.
 
 - Creates a new movie.
 - Required fields: title, release_date
+- Required permission: `create:movies`.
 
 Example json data to send.
 
@@ -308,6 +344,7 @@ Example of output.
 
 - Edits a movie with given id.
 - Possible fields to edit: title, release_date.
+- Required permission: `patch:movies`.
 
 Example of json data to send.
 
