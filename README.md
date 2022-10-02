@@ -28,7 +28,7 @@ We recommend working within a virtual environment whenever using Python for proj
 
 #### PIP Dependencies
 
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
+Once you have your virtual environment setup and running, install dependencies by running:
 
 ```bash
 pip install -r requirements.txt
@@ -38,11 +38,8 @@ This will install all of the required packages we selected within the `requireme
 
 ##### Key Dependencies
 
-- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
-
-- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py.
-
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server.
+- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework.
+- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM.
 - [DOT-ENV](https://pypi.org/project/python-dotenv/) extension handling reading .env variables.
 
 ## Production
@@ -62,7 +59,7 @@ Create a .env file in following the example (.env_example). Ensure to put databa
 
 ## Running the server
 
-From within the `backend` directory first ensure you are working using your created virtual environment.
+Ensure you are working using your created virtual environment.
 
 To run the server, execute:
 
@@ -402,7 +399,7 @@ Example of output.
 1. 400 - Bad request. Request missing a required field.
 2. 401 - Unauthorized. Authentication needed.
 3. 403 - Forbidden. User does not have rights to perform action.
-4. 404 - Resource not found. Question or category not found.
+4. 404 - Resource not found.
 5. 405 - Method not allowed on given endpoint.
 6. 422 -  Request unprocessable.
 7. 500 - Internal server error.
